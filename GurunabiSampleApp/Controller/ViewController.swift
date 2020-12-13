@@ -9,12 +9,12 @@ import UIKit
 import MapKit
 import Lottie
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!
-    
     @IBOutlet weak var mapView: MKMapView!
     
+    let locationManager = CLLocationManager()
     
     lazy var loadingAnimation:AnimationView = {
         
@@ -27,25 +27,64 @@ class ViewController: UIViewController {
         
     }()
     
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        startUpdatingLocation()
+        
+        
     }
     
- 
-// アニメーションの開始
+    
+    // アニメーションの開始
     func startLoading() {
         view.addSubview(loadingAnimation)
         loadingAnimation.play()
     }
     
-// アニメーションの停止(削除)
+    // アニメーションの停止(削除)
     func stopLoading() {
         loadingAnimation.removeFromSuperview()
     }
-
-
+    
+    //
+    func startUpdatingLocation(){
+        
+        if #available(iOS 14.0, *) {
+            
+            let status = locationManager.authorizationStatus
+            
+            switch status {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            default:
+                break
+            }
+            
+        }else{
+            
+            let status = CLLocationManager.authorizationStatus()
+            
+            switch status {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            default:
+                break
+                
+            }
+            
+            locationManager.startUpdatingLocation()
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
+    
 }
-
