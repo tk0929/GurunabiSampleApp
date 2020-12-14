@@ -16,6 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     let locationManager = CLLocationManager()
     
+    
     lazy var loadingAnimation:AnimationView = {
         
         let animationView = AnimationView(name: "1")
@@ -31,12 +32,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        startUpdatingLocation()
+    
         
         
     }
-    
     
     // アニメーションの開始
     func startLoading() {
@@ -48,43 +47,55 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func stopLoading() {
         loadingAnimation.removeFromSuperview()
     }
-    
-    //
+ 
+   
+////    //位置情報取得許可ポップアップ
     func startUpdatingLocation(){
         
         if #available(iOS 14.0, *) {
             
             let status = locationManager.authorizationStatus
-            
+
             switch status {
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
             default:
                 break
             }
-            
+
         }else{
-            
+
             let status = CLLocationManager.authorizationStatus()
-            
+
             switch status {
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
             default:
                 break
-                
+
             }
-            
+
             locationManager.startUpdatingLocation()
-            
+
         }
-        
-        
-        
-        
-        
-        
-        
     }
+    
+//位置情報を取得する際の精度と取得間隔を指定する
+        func configureSubViews() {
+
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.distanceFilter = 10
+            locationManager.startUpdatingLocation()
+//mapViewのタイプとユーザー追跡モードの設定
+            mapView.delegate = self
+            mapView.mapType = .standard
+            mapView.userTrackingMode = .follow
+        }
+
+
+    
+
+
     
 }
