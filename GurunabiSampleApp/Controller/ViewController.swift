@@ -15,6 +15,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
+    var lattiudeValue = Double()
+    var longitudeValue = Double()
     
     
     lazy var loadingAnimation:AnimationView = {
@@ -93,6 +95,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             mapView.userTrackingMode = .follow
         }
 
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.first
+        let lattiude = location?.coordinate.latitude
+        let longitude = location?.coordinate.longitude
+        
+        lattiudeValue = lattiude!
+        longitudeValue = longitude!
+    
+
+        print(lattiude,longitude)
+        
+        
+    }
 
     
 
