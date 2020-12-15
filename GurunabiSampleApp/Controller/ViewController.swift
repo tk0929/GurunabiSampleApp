@@ -50,6 +50,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         loadingAnimation.removeFromSuperview()
     }
  
+// 位置情報サービスの利用許可を促すポップアップ
+    func startUpdationgLocation() {
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        let status = CLAccuracyAuthorization.fullAccuracy
+        if status == .fullAccuracy{
+            
+            locationManager.startUpdatingLocation()
+            
+        }
+        
+        
+    }
    
 //////    //位置情報取得許可ポップアップ
 //    func startUpdatingLocation(){
