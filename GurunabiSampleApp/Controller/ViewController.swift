@@ -34,7 +34,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        startUpdationgLocation()
+        configureSubViews()
         
         
     }
@@ -101,7 +103,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         func configureSubViews() {
             //位置情報を取得する際の精度と取得間隔を指定する
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            locationManager.requestWhenInUseAuthorization()
             locationManager.distanceFilter = 10
             locationManager.startUpdatingLocation()
 //mapViewのタイプとユーザー追跡モードの設定
@@ -119,9 +122,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         lattiudeValue = lattiude!
         longitudeValue = longitude!
-    
-
-        print(lattiude,longitude)
         
         
     }
