@@ -51,40 +51,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
  
    
-////    //位置情報取得許可ポップアップ
-    func startUpdatingLocation(){
-        
-        if #available(iOS 14.0, *) {
-            
-            let status = locationManager.authorizationStatus
+//////    //位置情報取得許可ポップアップ
+//    func startUpdatingLocation(){
+//
+//        if #available(iOS 14.0, *) {
+//
+//            let status = locationManager.authorizationStatus
+//
+//            switch status {
+//            case .notDetermined:
+//                locationManager.requestWhenInUseAuthorization()
+//            default:
+//                break
+//            }
+//
+//        }else{
+//
+//            let status = CLLocationManager.authorizationStatus()
+//
+//            switch status {
+//            case .notDetermined:
+//                locationManager.requestWhenInUseAuthorization()
+//            default:
+//                break
+//
+//            }
+//
+//            locationManager.startUpdatingLocation()
+//
+//        }
+//    }
+//
 
-            switch status {
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            default:
-                break
-            }
-
-        }else{
-
-            let status = CLLocationManager.authorizationStatus()
-
-            switch status {
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            default:
-                break
-
-            }
-
-            locationManager.startUpdatingLocation()
-
-        }
-    }
     
-//位置情報を取得する際の精度と取得間隔を指定する
         func configureSubViews() {
-
+            //位置情報を取得する際の精度と取得間隔を指定する
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.distanceFilter = 10
