@@ -38,7 +38,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         startUpdationgLocation()
         configureSubViews()
         
-        
     }
     
     // アニメーションの開始
@@ -52,11 +51,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         loadingAnimation.removeFromSuperview()
     }
  
-// 位置情報サービスの利用許可を促すポップアップ
+// 位置情報取得の許可を促すポップアップ
     func startUpdationgLocation() {
         
-        locationManager.requestAlwaysAuthorization()
-        
+        locationManager.requestWhenInUseAuthorization()
+        //　正確な位置情報を取得
         let status = CLAccuracyAuthorization.fullAccuracy
         if status == .fullAccuracy{
             
@@ -104,7 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             //位置情報を取得する際の精度と取得間隔を指定する
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-            locationManager.requestWhenInUseAuthorization()
+//            locationManager.requestWhenInUseAuthorization()
             locationManager.distanceFilter = 10
             locationManager.startUpdatingLocation()
 //mapViewのタイプとユーザー追跡モードの設定
@@ -125,9 +124,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         
     }
-
     
 
 
+    
     
 }
