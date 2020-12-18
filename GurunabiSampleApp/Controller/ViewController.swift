@@ -125,6 +125,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
     }
     
+    @IBAction func tappedSearchButton(_ sender: Any) {
+    
+        //テキストフィールドを閉じる
+        searchTextField.resignFirstResponder()
+        //loading時のアニメーションの表示
+        startLoading()
+        
+        
+        
+   
+        
+        
+    }
 
 
     
