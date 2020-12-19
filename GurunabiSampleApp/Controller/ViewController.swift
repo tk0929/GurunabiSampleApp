@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import Lottie
+import Keys
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -17,6 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let locationManager = CLLocationManager()
     var lattiudeValue = Double()
     var longitudeValue = Double()
+
     
     
     lazy var loadingAnimation:AnimationView = {
@@ -132,9 +134,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //loading時のアニメーションの表示
         startLoading()
         
-        
-        
-   
+        let keys = GurunabiSampleAppKeys().gurunabiAPIKey
         
         
     }
