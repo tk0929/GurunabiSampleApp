@@ -13,4 +13,10 @@ target 'GurunabiSampleApp' do
   pod 'lottie-ios'
 
 
+  plugin 'cocoapods-keys', {
+    :project => "GurunabiSampleApp",
+    :keys => [
+      "gurunabiAPIKey",
+    ]}
+
 end
