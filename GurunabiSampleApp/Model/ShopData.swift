@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GurunabiRestaurantData {
+struct ShopData {
     
     var latitude: String?
     var longitude: String?
