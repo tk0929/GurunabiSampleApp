@@ -10,14 +10,18 @@ import MapKit
 import Lottie
 import Keys
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, DoneCatchDataProtocol {
+    
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
+    let apiKey = GurunabiSampleAppKeys().gurunabiAPIKey
     let locationManager = CLLocationManager()
-    var lattiudeValue = Double()
-    var longitudeValue = Double()
+    var latitude = Double()
+    var longitude = Double()
+    var shopDataArray = [ShopData]()
+    var totalHitCount = Int()
 
     
     
@@ -67,39 +71,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         
     }
-   
-//////    //位置情報取得許可ポップアップ
-//    func startUpdatingLocation(){
-//
-//        if #available(iOS 14.0, *) {
-//
-//            let status = locationManager.authorizationStatus
-//
-//            switch status {
-//            case .notDetermined:
-//                locationManager.requestWhenInUseAuthorization()
-//            default:
-//                break
-//            }
-//
-//        }else{
-//
-//            let status = CLLocationManager.authorizationStatus()
-//
-//            switch status {
-//            case .notDetermined:
-//                locationManager.requestWhenInUseAuthorization()
-//            default:
-//                break
-//
-//            }
-//
-//            locationManager.startUpdatingLocation()
-//
-//        }
-//    }
-//
-
     
         func configureSubViews() {
             //位置情報を取得する際の精度と取得間隔を指定する
@@ -118,11 +89,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations.first
-        let lattiude = location?.coordinate.latitude
+        let latitude = location?.coordinate.latitude
         let longitude = location?.coordinate.longitude
         
-        lattiudeValue = lattiude!
-        longitudeValue = longitude!
+        self.latitude = latitude!
+        self.longitude = longitude!
         
         
     }
@@ -134,11 +105,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //loading時のアニメーションの表示
         startLoading()
         
-        let keys = GurunabiSampleAppKeys().gurunabiAPIKey
+        let url = "https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=\(apiKey)&latitude=\(latitude)&longitude=\(longitude)&range=3&hit_per_page=50&freeword=\(searchTextField.text!)"
+        
+        let analyticsModel = AnalytictsModel(latitude: latitude, longitude: longitude, url: url)
+        
+        analyticsModel.doneCatchProtocl = self
+        analyticsModel.setData()
+       
+    }
+    
+    
+    func catchData(arraayData: Array<ShopData>, resultCount: Int) {
+        
+        stopLoading()
+        
+        shopDataArray = arraayData
+        totalHitCount = resultCount
+        
         
         
     }
 
+    
+    
 
     
     

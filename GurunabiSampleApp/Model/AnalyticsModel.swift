@@ -9,16 +9,27 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+
+protocol DoneCatchDataProtocol {
+    
+    func catchData(arraayData: Array<ShopData>,resultCount: Int)
+    
+}
+
+
+
 class AnalytictsModel{
     
-    var lattiude:Double?
+    var latitude:Double?
     var longitude:Double?
     var url:String?
-    var shopDateArray = [GurunabiRestaurantData]()
+    var shopDateArray = [ShopData]()
+    var doneCatchProtocl:DoneCatchDataProtocol?
     
-    init(lattiude:Double,longitude:Double,url:String){
+    
+    init(latitude:Double,longitude:Double,url:String){
         
-        self.lattiude = lattiude
+        self.latitude = latitude
         self.longitude = longitude
         self.url = url
         
@@ -52,23 +63,27 @@ class AnalytictsModel{
                     
                     for i in 0...totalHitCount! - 1 {
                         
-                        if json["rest"][i]["lattiude"].string != "" && json["rest"][i]["longitude"].string != "" && json["rest"][i]["url"].string != "" && json["rest"][i]["name"].string != "" && json["rest"][i]["tel"].string != "" && (json["rest"][i]["image_url"]["shop_image1"].string != "") {
+                        if json["rest"][i]["latitude"].string != "" && json["rest"][i]["longitude"].string != "" && json["rest"][i]["url"].string != "" && json["rest"][i]["name"].string != "" && json["rest"][i]["tel"].string != "" && (json["rest"][i]["image_url"]["shop_image1"].string != "") {
                             
                             
-                            let restaurantData = GurunabiRestaurantData(latitude: json["rest"][i]["lattiude"].string ,
-                                                                         longitude: json["rest"][i]["longitude"].string ,
-                                                                         url: json["rest"][i]["url"].string ,
-                                                                         name: json["rest"][i]["name"].string ,
-                                                                         tel:json["rest"][i]["tel"].string ,
-                                                                         restaurantImage: json["rest"][i]["image_url"]["shop_image1"].string)
+                            let shopData = ShopData(latitude: json["rest"][i]["latitude"].string ,
+                                                                        longitude: json["rest"][i]["longitude"].string ,
+                                                                        url: json["rest"][i]["url"].string ,
+                                                                        name: json["rest"][i]["name"].string ,
+                                                                        tel:json["rest"][i]["tel"].string ,
+                                                                        restaurantImage: json["rest"][i]["image_url"]["shop_image1"].string)
                             
                             
-                            self.shopDateArray.append(restaurantData)
-//                            print(self.shopDateArray.debugDescription)
+                            self.shopDateArray.append(shopData)
+                            //                            print(self.shopDateArray.debugDescription)
                             
                         }
                         
                     }
+                    
+                    
+                    self.doneCatchProtocl?.catchData(arraayData: self.shopDateArray, resultCount: self.shopDateArray.count)
+                    
                     
                 }catch{
                     
@@ -89,7 +104,7 @@ class AnalytictsModel{
         
         
     }
-
-
+    
+    
 }
 
