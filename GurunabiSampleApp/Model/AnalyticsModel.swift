@@ -12,7 +12,7 @@ import SwiftyJSON
 
 protocol DoneCatchDataProtocol {
     
-    func catchData(arraayData: Array<ShopData>,resultCount: Int)
+    func catchData(arrayData: Array<ShopData>,resultCount: Int)
     
 }
 
@@ -82,7 +82,7 @@ class AnalytictsModel{
                     }
                     
                     
-                    self.doneCatchProtocl?.catchData(arraayData: self.shopDateArray, resultCount: self.shopDateArray.count)
+                    self.doneCatchProtocl?.catchData(arrayData: self.shopDateArray, resultCount: self.shopDateArray.count)
                     
                     
                 }catch{

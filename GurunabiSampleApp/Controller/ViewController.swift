@@ -115,11 +115,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     
-    func catchData(arraayData: Array<ShopData>, resultCount: Int) {
+    func catchData(arrayData: Array<ShopData>, resultCount: Int) {
         
         stopLoading()
         
-        shopDataArray = arraayData
+        shopDataArray = arrayData
         totalHitCount = resultCount
         
         
