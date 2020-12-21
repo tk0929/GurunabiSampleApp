@@ -18,6 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     let apiKey = GurunabiSampleAppKeys().gurunabiAPIKey
     let locationManager = CLLocationManager()
+    var annotaion = MKPointAnnotation()
     var latitude = Double()
     var longitude = Double()
     var shopDataArray = [ShopData]()
@@ -113,6 +114,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         analyticsModel.setData()
        
     }
+
+    
+    
+    func addAnnotation(ShopData: [ShopData]){
+        
+        for i in 0...totalHitCount - 1{
+            
+            annotaion = MKPointAnnotation()
+            annotaion.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(shopDataArray[i].latitude!)!, CLLocationDegrees(shopDataArray[i].longitude!)!)
+            
+            annotaion.title = shopDataArray[i].name
+            annotaion.subtitle = shopDataArray[i].tel
+            
+            mapView.addAnnotation(annotaion)
+
+        }
+        
+        searchTextField.resignFirstResponder()
+        
+    }
+    
+    
+    
     
     
     func catchData(arrayData: Array<ShopData>, resultCount: Int) {
@@ -122,6 +146,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         shopDataArray = arrayData
         totalHitCount = resultCount
         
+        addAnnotation(ShopData: shopDataArray)
         
         
     }
