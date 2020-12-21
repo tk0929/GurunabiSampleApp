@@ -14,6 +14,6 @@ struct ShopData {
     var url: String?
     var name: String?
     var tel: String?
-    var restaurantImage: String?
+    var shopImage: String?
     
 }

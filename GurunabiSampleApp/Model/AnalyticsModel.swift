@@ -71,7 +71,7 @@ class AnalytictsModel{
                                                                         url: json["rest"][i]["url"].string ,
                                                                         name: json["rest"][i]["name"].string ,
                                                                         tel:json["rest"][i]["tel"].string ,
-                                                                        restaurantImage: json["rest"][i]["image_url"]["shop_image1"].string)
+                                                                        shopImage: json["rest"][i]["image_url"]["shop_image1"].string)
                             
                             
                             self.shopDateArray.append(shopData)
