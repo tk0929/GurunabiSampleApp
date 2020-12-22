@@ -42,7 +42,7 @@
                     <connections>
                         <outlet property="mapView" destination="GPn-RA-gbg" id="Muf-L1-amt"/>
                         <outlet property="searchTextField" destination="8fq-ah-l4c" id="cWR-ZO-3CX"/>
-                        <segue destination="4kY-Jc-Cpd" kind="presentation" id="5H5-sx-QtO"/>
+                        <segue destination="4kY-Jc-Cpd" kind="presentation" identifier="detailVC" id="5H5-sx-QtO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

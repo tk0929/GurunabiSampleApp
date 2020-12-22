@@ -21,11 +21,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var annotaion = MKPointAnnotation()
     var latitude = Double()
     var longitude = Double()
-    var shopDataArray = [ShopData]()
+    var shopData = [ShopData]()
     var totalHitCount = Int()
     var url = [String]()
     var shopImage = [String]()
     var name = [String]()
+    var tel = [String]()
+    var indexNumber = Int()
     
 
     
@@ -128,10 +130,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         for i in 0...totalHitCount - 1{
             
             annotaion = MKPointAnnotation()
-            annotaion.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(shopDataArray[i].latitude!)!, CLLocationDegrees(shopDataArray[i].longitude!)!)
+            annotaion.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(shopData[i].latitude!)!, CLLocationDegrees(shopData[i].longitude!)!)
             
-            annotaion.title = shopDataArray[i].name
-            annotaion.subtitle = shopDataArray[i].name
+            annotaion.title = ShopData[i].name
+            annotaion.subtitle = ShopData[i].tel
+            url.append(ShopData[i].url!)
+            shopImage.append(ShopData[i].shopImage!)
+            name.append(ShopData[i].name!)
+            tel.append(ShopData[i].tel!)
             
             mapView.addAnnotation(annotaion)
 
@@ -157,17 +163,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         stopLoading()
         
-        shopDataArray = arrayData
+        shopData = arrayData
         totalHitCount = resultCount
         
-        addAnnotation(ShopData: shopDataArray)
+        //shopDataの中身を取り出しannotaionとして設置
+        addAnnotation(ShopData: shopData)
         
         
     }
 
     
+//    annotaionがタップされたときの処理
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        indexNumber = Int()
+        if name.firstIndex(of: (view.annotation?.title)!!) != nil {
+            
+            indexNumber = name.firstIndex(of: (view.annotation?.title)!!)!
+            
+        }
+        
+        performSegue(withIdentifier: "detailVC", sender: nil)
     
-
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let detailVC = segue.destination as! DetailViewController
+        detailVC.name = name[indexNumber]
+        detailVC.tel =  tel[indexNumber]
+        detailVC.imageURL = shopImage[indexNumber]
+        detailVC.url = url[indexNumber]
+        
+        
+    }
     
     
 }
