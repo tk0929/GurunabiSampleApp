@@ -23,6 +23,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var longitude = Double()
     var shopDataArray = [ShopData]()
     var totalHitCount = Int()
+    var url = [String]()
+    var shopImage = [String]()
+    var name = [String]()
+    
 
     
     
@@ -119,21 +123,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func addAnnotation(ShopData: [ShopData]){
         
+        removeAnnotations()
+        
         for i in 0...totalHitCount - 1{
             
             annotaion = MKPointAnnotation()
             annotaion.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(shopDataArray[i].latitude!)!, CLLocationDegrees(shopDataArray[i].longitude!)!)
             
             annotaion.title = shopDataArray[i].name
-            annotaion.subtitle = shopDataArray[i].tel
+            annotaion.subtitle = shopDataArray[i].name
             
             mapView.addAnnotation(annotaion)
 
         }
         
-        searchTextField.resignFirstResponder()
+//        searchTextField.resignFirstResponder()
         
     }
+    
+    
+    func removeAnnotations() {
+
+        mapView.removeAnnotations(mapView.annotations)
+    
+    }
+
     
     
     
