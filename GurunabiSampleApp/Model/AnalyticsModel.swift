@@ -23,7 +23,7 @@ class AnalytictsModel{
     var latitude:Double?
     var longitude:Double?
     var url:String?
-    var shopDateArray = [ShopData]()
+    var shopDate = [ShopData]()
     var doneCatchProtocl:DoneCatchDataProtocol?
     
     
@@ -74,7 +74,7 @@ class AnalytictsModel{
                                                                         shopImage: json["rest"][i]["image_url"]["shop_image1"].string)
                             
                             
-                            self.shopDateArray.append(shopData)
+                            self.shopDate.append(shopData)
                             //                            print(self.shopDateArray.debugDescription)
                             
                         }
@@ -82,7 +82,7 @@ class AnalytictsModel{
                     }
                     
                     
-                    self.doneCatchProtocl?.catchData(arrayData: self.shopDateArray, resultCount: self.shopDateArray.count)
+                    self.doneCatchProtocl?.catchData(arrayData: self.shopDate, resultCount: self.shopDate.count)
                     
                     
                 }catch{
