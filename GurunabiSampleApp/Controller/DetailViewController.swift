@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import WebKit
+import SDWebImage
 
 class DetailViewController: UIViewController {
     
@@ -14,11 +16,16 @@ class DetailViewController: UIViewController {
     var tel = String()
     var imageURL = String()
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var mapView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        
+        
+        
     }
     
 
