@@ -30,6 +30,13 @@ class DetailViewController: UIViewController {
     
 
     
-//    電話をかけられるようにする
+    @IBAction func tappedCallButton(_ sender: Any) {
+        //    電話をかけられるようにする
+        UIApplication.shared.open(URL(string: "tel://\(tel)")!, options: [:], completionHandler: nil)
+        
+        
+        
+    }
+
 
 }
