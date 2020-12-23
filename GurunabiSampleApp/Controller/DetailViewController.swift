@@ -32,7 +32,9 @@ class DetailViewController: UIViewController {
     
     @IBAction func tappedCallButton(_ sender: Any) {
         //    電話をかけられるようにする
-        UIApplication.shared.open(URL(string: "tel://\(tel)")!, options: [:], completionHandler: nil)
+        let PhoneNumber = tel.replacingOccurrences(of: "-", with: "")
+        
+        UIApplication.shared.open(URL(string: "tel://\(PhoneNumber)")!, options: [:], completionHandler: nil)
         
         
         
