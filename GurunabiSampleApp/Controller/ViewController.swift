@@ -151,6 +151,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func removeAnnotations() {
 
         mapView.removeAnnotations(mapView.annotations)
+        
+        url = []
+        tel = []
+        shopImage = []
+        name = []
+        
+        
     
     }
 
@@ -197,6 +204,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         
     }
-    
+
     
 }
