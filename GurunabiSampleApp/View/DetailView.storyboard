@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vax-K1-7BI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detail View Controller-->
+        <scene sceneID="aLY-tQ-RMA">
+            <objects>
+                <viewController id="vax-K1-7BI" customClass="DetailViewController" customModule="GurunabiSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O6f-tq-iYF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M07-YO-jiT">
+                                <rect key="frame" x="0.0" y="184" width="414" height="678"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oLv-Fb-cBb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="YYN-Vf-jOh"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prU-Jk-gAs">
+                                <rect key="frame" x="354" y="802" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4zu-4O-HPi"/>
+                                    <constraint firstAttribute="width" constant="50" id="8Du-Qg-B70"/>
+                                </constraints>
+                                <state key="normal" image="call"/>
+                                <connections>
+                                    <action selector="tappedCallButton:" destination="vax-K1-7BI" eventType="touchUpInside" id="cmV-N9-piH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lhL-fI-UKG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="M07-YO-jiT" firstAttribute="leading" secondItem="lhL-fI-UKG" secondAttribute="leading" id="6xi-GE-Bev"/>
+                            <constraint firstItem="oLv-Fb-cBb" firstAttribute="top" secondItem="lhL-fI-UKG" secondAttribute="top" id="EMv-M6-jXP"/>
+                            <constraint firstItem="M07-YO-jiT" firstAttribute="trailing" secondItem="lhL-fI-UKG" secondAttribute="trailing" id="GHV-5N-qHj"/>
+                            <constraint firstItem="oLv-Fb-cBb" firstAttribute="leading" secondItem="lhL-fI-UKG" secondAttribute="leading" id="KXr-gh-GFq"/>
+                            <constraint firstItem="M07-YO-jiT" firstAttribute="top" secondItem="oLv-Fb-cBb" secondAttribute="bottom" id="Pvf-6a-KET"/>
+                            <constraint firstItem="oLv-Fb-cBb" firstAttribute="trailing" secondItem="lhL-fI-UKG" secondAttribute="trailing" id="RuL-kh-iLL"/>
+                            <constraint firstItem="lhL-fI-UKG" firstAttribute="bottom" secondItem="M07-YO-jiT" secondAttribute="bottom" id="Zuw-5A-GnY"/>
+                            <constraint firstItem="lhL-fI-UKG" firstAttribute="trailing" secondItem="prU-Jk-gAs" secondAttribute="trailing" constant="10" id="iyU-ib-nYm"/>
+                            <constraint firstItem="lhL-fI-UKG" firstAttribute="bottom" secondItem="prU-Jk-gAs" secondAttribute="bottom" constant="10" id="wg0-Va-oqs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="oLv-Fb-cBb" id="2uC-rx-xhC"/>
+                        <outlet property="webView" destination="M07-YO-jiT" id="pf9-ZU-TJL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XlM-Li-Bk8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-30.434782608695656" y="140.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="call" width="256" height="256"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

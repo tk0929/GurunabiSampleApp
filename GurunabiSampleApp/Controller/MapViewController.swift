@@ -10,7 +10,7 @@ import MapKit
 import Lottie
 import Keys
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, DoneCatchDataProtocol {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, DoneCatchDataProtocol {
     
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -160,11 +160,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
     
     }
-
-    
-    
-    
-    
     
     func catchData(arrayData: Array<ShopData>, resultCount: Int) {
         
